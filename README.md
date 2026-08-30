@@ -25,7 +25,7 @@ A `nera` file is a sequence of **blocks**, separated by one or more blank lines.
 - A block with **multiple keys** and **one value row** is a `LiteralGroup`.
 - A block with **multiple keys** and **multiple value rows** is a `LiteralGroupCollection`.
 
-Leading whitespace around values is trimmed. Bare commas outside this structure are not allowed — a literal comma inside a value would need to be handled the way `encoding/csv` handles quoting, which `nera` does not currently define a policy for.
+Leading whitespace around values is trimmed. Values containing a literal comma must be wrapped in double quotes: `"Smith, John & Co."` — the quotes are stripped and are not part of the parsed value. Unquoted commas are always treated as field separators.
 
 A block's header and its first value row **must not** have a blank line between them — a blank line always closes the current block.
 
